@@ -1,9 +1,9 @@
 # Blender-ZMQ-add-on (BlendZMQ)
-Blender 2.8x add-on that allows streaming of data (from another computer) into Blender over ZeroMQ sockets,
+Blender 3.0x add-on that allows streaming of data (from another computer) into Blender over ZeroMQ sockets,
 **without** freezing the interface (publisher-subscriber pattern).
 
 ## Update
-- v1.1 (2020-02-10) - **Blender 2.81+ pip support**: In Blender 2.81 pip is enabled by default.
+- v0.1 (2021-01-17) - **Blender 3.00+ support**
 This update takes that behavior into account. If the `Enable pip & install pyzmq` button fails, it still executes
 `ensurepip.bootstrap()`. Restart Blender and try again, it will work this time
 (on Windows make sure you run with admin rights).
@@ -30,20 +30,18 @@ See for a demonstration:
 
 You can take this add-on as an example on how to connect your own programs with Blender.
 
+## Preface
+This project is a copy from https://github.com/NumesSanguis/Blender-ZMQ-add-on and some modifications to make it work with Blender 3.0.
+
 
 ## Prerequisite
-- Python (tested with 3.7, probably 2.7, 3.5+ works too) on your system with `pyzmq`
+- Python (tested with 3.9.7, probably 2.7, 3.5+ works too) on your system with `pyzmq`
 for programs outside Blender.
-   - Anaconda (recommended to manage Python environments)
-     1. Anaconda 3.7+: https://www.anaconda.com/distribution/
-     2. `conda create --name bzmq python=3.7`  # create environment with Python 3.7
-     3. `conda activate bzmq`  # activate newly created environment
-     4. `conda install -c anaconda pyzmq`  # install pyzmq in this environment
    - System Python: `pip install pyzmq`
 
 ## How to use
 1. Download this repository as a .zip by:
-   - Go to https://github.com/NumesSanguis/Blender-ZMQ-add-on/releases and download the ZIP, or
+   - Go to https://github.com/Kei-Fujikura/Blender-ZMQ-add-on/ and download the ZIP, or
    - Clicking the green "Clone or download" button and choose "Download ZIP"
 1. Start Blender with Administrator right (at least on Windows) to allow enabling of `pip` and installing `pyzmq`
 (does NOT work with a Snap package install of Blender on Linux, see troubleshooting)
@@ -53,12 +51,14 @@ for programs outside Blender.
 1. Open side panel in 3D view by
    - Pressing `n` on your keyboard
    - Dragging `<` to the left
-1. Click "bZMQ" -> "Enable pip & install pyzmq" button
+1. <del>Click "bZMQ" -> "Enable pip & install pyzmq" button</del>  
+    -> Please copy pyzmq uncompressed packages ```C:\Users\[username]\AppData\Roaming\Python\Python39\site-packages```
+
 1. Click "Connect socket" button. Now it's waiting for data message from outside.
 1. Start outside script to send data into blender (Get the script by downloading from the GitHub repo / unzip previously downloaded ZIP):
    1. Get script by:
       * Unziping the .zip downloaded in step 1
-      * In terminal: `git clone https://github.com/NumesSanguis/Blender-ZMQ-add-on`
+      * In terminal: `git clone https://github.com/Kei-Fujikura/Blender-ZMQ-add-on`
    2. Open a terminal and navigate to `cd *path*/Blender-ZMQ-add-on`
    3. Make sure conda / virtual env is active (e.g. `conda activate bzmq`) with `pyzmq`
    4. Execute: `python zmq_pub_number_gen.py` (Change ip or port by adding `--ip 192.168.x.x` and/or `--port 8080`)
@@ -78,8 +78,6 @@ https://docs.blender.org/api/current/info_tips_and_tricks.html#bundled-python-ex
 - Gumroad: https://gumroad.com/l/blendzmq
 - Blender add-on file structure inspired by btrace: https://github.com/sobotka/blender-addons/tree/master/btrace
 - More information about ZeroMQ: https://zeromq.org/
-- Why not make your outside Blender software easy to deploy, independent of OS?
-Take a look at ZeroMQ with Docker: https://github.com/NumesSanguis/pyzmq-docker
 - When developing Blender Add-ons, reload all add-ons without restarting Blender by executing: `bpy.ops.script.reload()`
 
 

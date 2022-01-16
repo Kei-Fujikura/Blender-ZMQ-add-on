@@ -181,7 +181,7 @@ class PIPZMQ_OT_pip_pyzmq(bpy.types.Operator):
                     install_props.install_status += "\nPip not activated, trying bootstrap()"
                     self.report({'ERROR'}, "Pip not activated, trying bootstrap()")
                     print("bootstrap failed with: ", e)
-            py_exec = bpy.app.binary_path_python
+            py_exec = sys.executable
 
         # TODO check permission rights
         # TODO Windows ask for permission:
